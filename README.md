@@ -27,9 +27,13 @@ Open your browser at [http://localhost:5173](http://localhost:5173) to see the a
 
 ### **Demo**
 
-- View a live demo or screen recording of the web version:  
-  [Web Demo / Screen Recording](https://drive.google.com/file/d/12ZU2AolW_yuC7-kMBLeZ_xaZYr9BrjE7/view)
+- View a screen recording of the web version:  
+  [Screen Recording](https://drive.google.com/file/d/12ZU2AolW_yuC7-kMBLeZ_xaZYr9BrjE7/view)
+
+- Access the live website:  
+  [Live Demo](https://plum-ai-quiz-sigma.vercel.app)
 ---
+
 
 
 ## 2. Problem Understanding
