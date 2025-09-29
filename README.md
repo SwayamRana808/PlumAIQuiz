@@ -118,25 +118,25 @@ Include:
 # Project Screenshots
 
 ## Home Page
-![Home Page](/screenshots/home.png)
+![Home Page](/public//screenshots/home.png)
 
 ## Home Loading
-![Home Loading](/screenshots/homeLoading.png)
+![Home Loading](/publicscreenshots/homeLoading.png)
 
 ## Home Loaded
-![Home Loading](/screenshots/homeLoaded.png)
+![Home Loading](/public/screenshots/homeLoaded.png)
 
 ## Quiz Page
-![Quiz Page](/screenshots/quiz.png)
+![Quiz Page](/public/screenshots/quiz.png)
 
 ## Drawer Navigation
-![Drawer Navigation](/screenshots/quizDrawer.png)
+![Drawer Navigation](/public/screenshots/quizDrawer.png)
 
 ## AI Feedback Loading
-![AI Feedback Loading](/screenshots/aifeedbackLoading.png)
+![AI Feedback Loading](/public/screenshots/aifeedbackLoading.png)
 
 ## AI Feedback Loaded
-![AI Feedback Loaded](/screenshots/aiFeedBackLoaded.png)
+![AI Feedback Loaded](/public/screenshots/aiFeedBackLoaded.png)
 
 1. Home page / quiz selection
 2. Quiz interface
