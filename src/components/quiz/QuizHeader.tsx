@@ -1,7 +1,7 @@
 import React from 'react';
-import Timer from './Timer';
-import ProgressBar from './ProgressBar';
-import Confetti from './Confetti';
+import Timer from '../common/Timer';
+import ProgressBar from '../common/ProgressBar';
+import Confetti from '../common/Confetti';
 
 interface QuizHeaderProps {
   quizTopic: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import generateQuestions from '../services/aiService';
-import QuizModal from '../components/QuizModal';
+import QuizModal from '../components/quiz/QuizModal';
 import { quizTopics } from '../constant/quizTopics';
 
 interface QuizQuestion {

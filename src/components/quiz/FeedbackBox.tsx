@@ -1,6 +1,6 @@
 // FeedbackBox.tsx
 import React from 'react';
-import Loader from './Loader';
+import Loader from '../common/Loader';
 
 interface FeedbackBoxProps {
   feedback: string;

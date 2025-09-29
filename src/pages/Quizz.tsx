@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import generateFeedback from '../services/aiFeedbackService';
-import QuizHeader from '../components/QuizHeader';
-import QuestionCard from '../components/QuestionCard';
-import NavigationButtons from '../components/NavigationButtons';
-import FeedbackBox from '../components/FeedbackBox';
-import QuestionDrawer from '../components/QuestionDrawer';
+import QuizHeader from '../components/quiz/QuizHeader';
+import QuestionCard from '../components/quiz/QuestionCard';
+import NavigationButtons from '../components/quiz/NavigationButtons';
+import FeedbackBox from '../components/quiz/FeedbackBox';
+import QuestionDrawer from '../components/quiz/QuestionDrawer';
 import { HiOutlineMenu } from 'react-icons/hi';
 
 interface QuizQuestion {
