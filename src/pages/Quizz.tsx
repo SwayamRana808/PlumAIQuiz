@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import generateFeedback from '../services/aiFeedbackService';
@@ -6,8 +6,6 @@ import QuizHeader from '../components/quiz/QuizHeader';
 import QuestionCard from '../components/quiz/QuestionCard';
 import NavigationButtons from '../components/quiz/NavigationButtons';
 import FeedbackBox from '../components/quiz/FeedbackBox';
-import QuestionDrawer from '../components/quiz/QuestionDrawer';
-import { HiOutlineMenu } from 'react-icons/hi';
 
 interface QuizQuestion {
   question: string;
@@ -19,14 +17,23 @@ interface Quiz {
   questions: QuizQuestion[];
 }
 
-const Quizz = () => {
+interface QuizzProps {
+  setDrawerProps: (props: {
+    totalQuestions: number;
+    currentQuestion: number;
+    selectedOptions: number[];
+    setCurrentQuestion: (i: number) => void;
+  }) => void;
+}
+
+const Quizz: React.FC<QuizzProps> = ({ setDrawerProps }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [score, setScore] = useState<number | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const [loadingFeedback, setLoadingFeedback] = useState(false); // NEW
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [loadingFeedback, setLoadingFeedback] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const quiz = location.state?.quiz as Quiz;
   const timerSettings = location.state?.timer as {
@@ -39,7 +46,16 @@ const Quizz = () => {
     Array(quiz?.questions.length || 0).fill(-1),
   );
   const [submitted, setSubmitted] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  useEffect(() => {
+    // Update drawer props in App.tsx
+    setDrawerProps({
+      totalQuestions: quiz?.questions.length || 0,
+      currentQuestion,
+      selectedOptions,
+      setCurrentQuestion,
+    });
+  }, [currentQuestion, selectedOptions, setDrawerProps, quiz]);
 
   if (!quiz) {
     return (
@@ -72,13 +88,9 @@ const Quizz = () => {
       position: 'top-center',
     });
 
-    if (totalCorrect === quiz.questions.length) {
-      setShowConfetti(true);
-    }
+    if (totalCorrect === quiz.questions.length) setShowConfetti(true);
 
-    // Start loading feedback
     setLoadingFeedback(true);
-
     const feedbackText = await generateFeedback({
       questions: quiz.questions.map((q, i) => ({
         question: q.question,
@@ -88,7 +100,6 @@ const Quizz = () => {
       })),
       score: totalCorrect,
     });
-
     setFeedback(feedbackText);
     setLoadingFeedback(false);
   };
@@ -96,15 +107,6 @@ const Quizz = () => {
   return (
     <div className="p-4">
       <Toaster />
-      {/* Drawer */}
-      <button
-        onClick={() => setDrawerOpen(true)}
-        className="fixed top-4 left-4 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 flex items-center justify-center"
-        aria-label="Open Questions Drawer"
-      >
-        <HiOutlineMenu size={24} />
-      </button>
-
       {/* Header */}
       <QuizHeader
         quizTopic={location.state?.quizTopic}
@@ -134,15 +136,6 @@ const Quizz = () => {
         onPrev={() => setCurrentQuestion((prev) => Math.max(0, prev - 1))}
         onNext={() => setCurrentQuestion((prev) => Math.min(quiz.questions.length - 1, prev + 1))}
         onSubmit={handleSubmit}
-      />
-
-      <QuestionDrawer
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        totalQuestions={quiz.questions.length}
-        currentQuestion={currentQuestion}
-        selectedOptions={selectedOptions}
-        setCurrentQuestion={setCurrentQuestion}
       />
 
       {/* Feedback */}

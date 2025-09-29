@@ -1,4 +1,4 @@
- const Loader = () => {
+const Loader = () => {
   return (
     <svg
       aria-hidden="true"
