@@ -6,6 +6,13 @@ A web-based quiz application enhanced with AI-generated feedback and interactive
 
 ## 1. Project Setup & Demo
 
+### **Environment Variables**
+
+Create a .env file in the root of your project and add the following key:
+```bash
+VITE_GEMINI_API_KEY=your_api_key_here
+#Replace your_api_key_here with your actual Gemini API key.
+
 ### **Web**
 
 ```bash
@@ -20,9 +27,10 @@ Open your browser at [http://localhost:5173](http://localhost:5173) to see the a
 
 ### **Demo**
 
-- Provide a screen recording or hosted link for the web version.
-
+- View a live demo or screen recording of the web version:  
+  [Web Demo / Screen Recording](https://drive.google.com/file/d/12ZU2AolW_yuC7-kMBLeZ_xaZYr9BrjE7/view)
 ---
+
 
 ## 2. Problem Understanding
 
@@ -41,32 +49,73 @@ This project aims to create an **interactive quiz platform** where:
 
 ---
 
+ 
 ## 3. AI Prompts & Iterations
 
 ### **Services**
 
-1. `aiFeedbackService.ts` – Generates AI-based feedback for submitted answers.
-2. `aiService.ts` – Generates quiz questions dynamically.
+1. `aiService.ts` – Generates quiz questions dynamically.
+2. `aiFeedbackService.ts` – Generates AI-based feedback for submitted answers.
 
-**Example Usage:**
+---
+
+### **Example Prompts**
+
+**Quiz Generation Prompt (aiService.ts):**
 
 ```ts
-const feedbackText = await generateFeedback({
-  questions: quiz.questions.map((q, i) => ({
-    question: q.question,
-    options: q.options,
-    correctAnswer: q.answer,
-    userAnswer: selectedOptions[i],
-  })),
-  score: totalCorrect,
+const response = await ai.models.generateContent({
+  model: 'gemini-2.5-flash',
+  contents: `
+    Generate 5 medium multiple choice questions about ${topic}.
+    The "answer" should be the zero-based index of the correct option in the "options" array.
+    Follow this JSON schema exactly:
+    {
+      "questions": [
+        {
+          "question": "string",
+          "options": ["string", "string", "string", "string"],
+          "answer": number
+        }
+      ]
+    }
+  `,
 });
 ```
 
-**Iterations:**
+**Feedback Generation Prompt (aiFeedbackService.ts):**
 
-- **Initial prompt:** Simple explanation of answers.
-- **Issue:** Feedback was verbose and generic.
-- **Refinement:** Prompts now generate **concise, clear, actionable feedback**.
+```ts
+const response = await ai.models.generateContent({
+  model: 'gemini-2.5-flash',
+  contents: `
+    You are an expert quiz evaluator.
+    A user completed a quiz with the following questions, options, correct answers, and their selected answers:
+    
+    ${JSON.stringify(data.questions, null, 2)}
+    
+    The user's score is ${data.score} out of ${data.questions.length}.
+    
+    Provide a detailed, friendly, motivational feedback message for the user.
+    Return only the feedback text, no JSON, no extra commentary.
+  `,
+});
+```
+---
+### **Iterations**
+
+**Quiz Generation (aiService.ts)**
+
+- **Initial Prompt:** Simple question generation.
+- **Issue:** Questions were sometimes too vague or format inconsistent.
+- **Refinement:** Added clear instructions to **follow JSON schema** and specify **difficulty level** (Medium).  
+
+**Feedback Generation (aiFeedbackService.ts)**
+
+- **Initial Prompt:** Simple explanation of answers.
+- **Issue:** Feedback was too generic and not motivational.
+- **Refinement:** Added instructions for **friendly, motivational, concise feedback**, asking for **text only, no JSON**.
+- **Result:** Feedback is now actionable, concise, and user-friendly.
 
 ---
 
@@ -156,20 +205,24 @@ Include:
 5. Dark mode toggle
 
 ---
-
+ 
 ## 6. Known Issues / Improvements
 
 - Feedback generation may be delayed for long quizzes.
 - No persistent storage of quizzes or user progress.
 - Timer auto-submit is not fully robust.
-- No routes protection
+- No routes protection.
+- Current quiz question generation is limited to medium difficulty by default.
 
 **Future improvements:**
 
+- Allow users to select difficulty levels (Easy, Medium, Hard, or Mixed) when generating quizzes.
 - User authentication & progress tracking.
-- Add database integration to store user previous records.
+- Add database integration to store users’ previous records.
+- Optimize AI feedback generation speed for long quizzes.
+```
 
----
+
 
 ## 7. Bonus Features
 
