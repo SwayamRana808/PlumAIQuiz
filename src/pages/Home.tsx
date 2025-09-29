@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import generateQuestions from "../services/aiService";
-import QuizModal from "../components/QuizModal";
-import { quizTopics } from "../constant/quizTopics";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import generateQuestions from '../services/aiService';
+import QuizModal from '../components/QuizModal';
+import { quizTopics } from '../constant/quizTopics';
 
 interface QuizQuestion {
   question: string;
@@ -15,7 +15,7 @@ interface Quiz {
 }
 
 const Home = () => {
-  const [topics, setTopics] = useState("");
+  const [topics, setTopics] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [quiz, setQuiz] = useState<Quiz | null>(null);
@@ -23,29 +23,28 @@ const Home = () => {
 
   const handleClick = async () => {
     if (topics.trim().length === 0) {
-      alert("Please enter a topic.");
+      alert('Please enter a topic.');
       return;
     }
-  
+
     setIsModalOpen(true); // open modal immediately
     setLoading(true); // start spinner
-  
+
     try {
       const generatedQuiz = await generateQuestions(topics);
       setQuiz(generatedQuiz);
     } catch (error) {
-      console.error("Failed to generate quiz:", error);
-      alert("Failed to generate quiz. Try again!");
+      console.error('Failed to generate quiz:', error);
+      alert('Failed to generate quiz. Try again!');
     } finally {
       setLoading(false); // stop spinner
     }
   };
-  
 
   const goToQuiz = (timer: { hours: number; minutes: number; seconds: number } | null) => {
     if (!quiz) return;
     setIsModalOpen(false);
-    navigate("/quizz", { state: { quiz, timer ,quizTopic: topics } });
+    navigate('/quizz', { state: { quiz, timer, quizTopic: topics } });
   };
 
   return (

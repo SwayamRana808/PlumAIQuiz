@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import confetti from "canvas-confetti";
+import React, { useEffect } from 'react';
+import confetti from 'canvas-confetti';
 
 interface ConfettiProps {
   trigger: boolean; // when true, fire confetti
@@ -18,7 +18,7 @@ const Confetti: React.FC<ConfettiProps> = ({ trigger }) => {
       confetti(
         Object.assign({}, defaults, opts, {
           particleCount: Math.floor(count * particleRatio),
-        })
+        }),
       );
     }
 

@@ -1,18 +1,13 @@
-import React from "react";
+import React from 'react';
 
 interface ProgressBarProps {
   totalQuestions: number;
   attemptedQuestions: number;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
-  totalQuestions,
-  attemptedQuestions,
-}) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ totalQuestions, attemptedQuestions }) => {
   const percentage =
-    totalQuestions > 0
-      ? Math.round((attemptedQuestions / totalQuestions) * 100)
-      : 0;
+    totalQuestions > 0 ? Math.round((attemptedQuestions / totalQuestions) * 100) : 0;
 
   return (
     <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700 my-4">
