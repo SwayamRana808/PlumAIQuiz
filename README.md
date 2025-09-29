@@ -221,7 +221,7 @@ Include:
 - Add database integration to store users’ previous records.
 - Optimize AI feedback generation speed for long quizzes.
 ```
-
+---
 
 
 ## 7. Bonus Features
