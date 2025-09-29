@@ -40,7 +40,7 @@ async function generateQuestions(topic: string): Promise<Quiz> {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: `
-        Generate 5 challenging multiple choice questions about ${topic}.
+        Generate 5 medium multiple choice questions about ${topic}.
         The "answer" should be the zero-based index of the correct option in the "options" array.
         Follow this JSON schema exactly:
         {
