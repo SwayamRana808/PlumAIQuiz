@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Loader = () => {
+ const Loader = () => {
   return (
     <svg
       aria-hidden="true"

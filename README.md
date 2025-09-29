@@ -142,8 +142,6 @@ Include:
 ![DarkMode and Confetti](/public/screenshots/confetti.png)
 
 
-![AI Feedback Loaded](/public/screenshots/aiFeedBackLoaded.png)
-
 1. Home page / quiz selection
 2. Quiz interface
 3. Drawer navigation
