@@ -121,7 +121,7 @@ Include:
 ![Home Page](/public//screenshots/home.png)
 
 ## Home Loading
-![Home Loading](/publicscreenshots/homeLoading.png)
+![Home Loading](/publics/creenshots/homeLoading.png)
 
 ## Home Loaded
 ![Home Loading](/public/screenshots/homeLoaded.png)
@@ -138,6 +138,12 @@ Include:
 ## AI Feedback Loaded
 ![AI Feedback Loaded](/public/screenshots/aiFeedBackLoaded.png)
 
+## DarkMode and Confetti effect
+![DarkMode and Confetti](/public/screenshots/confetti.png)
+
+
+![AI Feedback Loaded](/public/screenshots/aiFeedBackLoaded.png)
+
 1. Home page / quiz selection
 2. Quiz interface
 3. Drawer navigation
@@ -151,6 +157,7 @@ Include:
 * Feedback generation may be delayed for long quizzes.
 * No persistent storage of quizzes or user progress.
 * Timer auto-submit is not fully robust.
+* No routes protection 
 
 **Future improvements:**
 
