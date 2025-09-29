@@ -118,10 +118,10 @@ Include:
 # Project Screenshots
 
 ## Home Page
-![Home Page](/public//screenshots/home.png)
+![Home Page](/public/screenshots/home.png)
 
 ## Home Loading
-![Home Loading](/publics/creenshots/homeLoading.png)
+![Home Loading](/public/screenshots/homeLoading.png)
 
 ## Home Loaded
 ![Home Loading](/public/screenshots/homeLoaded.png)
