@@ -15,7 +15,7 @@ function App() {
     totalQuestions: 0,
     currentQuestion: 0,
     selectedOptions: [] as number[],
-    setCurrentQuestion: (i: number) => {},
+    setCurrentQuestion: (_: number) => {},
   });
 
   const location = useLocation();
